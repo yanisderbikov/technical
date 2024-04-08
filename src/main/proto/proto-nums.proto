@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package numbers;
+
+// Определение сервиса
+service NumberGenerator {
+  // Определение rpc вызова, который принимает NumberRange как запрос и возвращает
+  // поток NumberResponse сообщений.
+  rpc GenerateNumbers (NumberRange) returns (stream NumberResponse);
+}
+
+// Определение сообщения, содержащего начальное и конечное значения.
+message NumberRange {
+  int32 firstValue = 1; // Начальное значение
+  int32 lastValue = 2;  // Конечное значение
+}
+
+// Определение сообщения, возвращаемого сервером.
+message NumberResponse {
+  int32 value = 1; // Сгенерированное значение
+}
